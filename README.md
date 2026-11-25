@@ -15,7 +15,7 @@
 
 <br>
 <p align="center">
-  <a href="https://rdatatoolbox.github.io/description-file" target="_blank"><b>View presentation</b></a>
+  <a href="https://rdatatoolbox.github.io/course-description" target="_blank"><b>View presentation</b></a>
 </p>
 <br>
 
@@ -37,13 +37,13 @@
   <br/>
   
   <!-- Quarto render -->
-  <a href="https://github.com/rdatatoolbox/description-file/actions/workflows/quarto-render.yml">
-    <img src="https://github.com/rdatatoolbox/description-file/actions/workflows/quarto-render.yml/badge.svg" alt="GHA render">
+  <a href="https://github.com/rdatatoolbox/course-description/actions/workflows/quarto-render.yml">
+    <img src="https://github.com/rdatatoolbox/course-description/actions/workflows/quarto-render.yml/badge.svg" alt="GHA render">
   </a>
   
   <!-- GitHub deployment -->
-  <a href="https://github.com/rdatatoolbox/description-file/actions/workflows/pages/pages-build-deployment">
-    <img src="https://github.com/rdatatoolbox/description-file/actions/workflows/pages/pages-build-deployment/badge.svg" alt="GHA deploy">
+  <a href="https://github.com/rdatatoolbox/course-description/actions/workflows/pages/pages-build-deployment">
+    <img src="https://github.com/rdatatoolbox/course-description/actions/workflows/pages/pages-build-deployment/badge.svg" alt="GHA deploy">
   </a>
 </p>
 
@@ -63,7 +63,10 @@
 
 ## Overview
 
-This repository contains files used to generate the online presentation [The `DESCRIPTION` file](https://rdatatoolbox.github.io/description-file) based on [Quarto](https://quarto.org/) and the [RevealJS](https://quarto.org/docs/presentations/revealjs/) framework.
+This repository contains files used to generate the online presentation 
+[The DESCRIPTION file](https://rdatatoolbox.github.io/course-description) 
+based on [Quarto](https://quarto.org/) and the 
+[RevealJS](https://quarto.org/docs/presentations/revealjs/) framework.
 
 
 ## Usage
@@ -82,14 +85,14 @@ To understand the file organisation of this repository, please read this [Wiki](
 
 ## Citation
 
-Casajus N (2025) _The `DESCRIPTION` file: List project metadata & dependencies in one place_. Online presentation available at <https://github.com/rdatatoolbox/description-file/>.
+Casajus N (2026) _**The DESCRIPTION file**: A central place for project metadata and dependencies_. Online presentation available at <https://github.com/rdatatoolbox/course-description/>.
 
 
 ## Contributing
 
-All types of contributions are encouraged and valued. For more information, check out our [Contributor Guidelines](https://github.com/rdatatoolbox/description-file/blob/main/CONTRIBUTING.md).
+All types of contributions are encouraged and valued. For more information, check out our [Contributor Guidelines](https://github.com/rdatatoolbox/course-description/blob/main/CONTRIBUTING.md).
 
-Please note that the `description-file` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the `course-description` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
 
 ## Acknowledgments

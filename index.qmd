@@ -1,27 +1,576 @@
 ---
-from: markdown+emoji
-format:
-  revealjs:
-    logo: images/logo-affiliation.png
-    footer: "{{< fa brands github >}} &nbsp;[`rdatatoolbox/description-file`](https://github.com/rdatatoolbox/description-file) &nbsp; &bull; &nbsp; {{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} &nbsp;[`cc-by-4.0`](https://creativecommons.org/licenses/by/4.0/deed.en)"
-    smaller: true
-    auto-stretch: false
-    chalkboard: true
-    toc-depth: 1
-    theme: [default, "styles/main.scss"]
-engine: knitr
+format: academica-revealjs
+
+title: "The DESCRIPTION file"
+subtitle: "A central place for project metadata and dependencies"
+
+footer: >
+  {{< fa brands github >}} 
+  [`rdatatoolbox/course-description`](https://github.com/rdatatoolbox/course-description)
+  &nbsp; &bull; &nbsp;
+  {{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} 
+  [`CC BY 4.0`](https://creativecommons.org/licenses/by/4.0/deed.en)
+    
+image: "images/logo-title-slide.png"
+logo: "images/logo-affiliation.png"
+favicon: "images/favicon-32x32.png"
+
+lang: en
+date: today
+date-format: "MMMM YYYY"
+
+creators:
+  - name: "Nicolas Casajus"
+
+    position: "Senior data scientist"
+
+    socials:
+      email: "nicolas.casajus@fondationbiodiversite.fr"
+      website: "https://nicolascasajus.fr"
+      github: "https://github.com/ahasverus"
+      orcid: "0000-0002-5537-5294"
+      scholar: "https://scholar.google.fr/citations?user=n1swa1UAAAAJ"
+
+    affiliations:
+      - name: "FRB-CESAB"
+        url: "https://www.fondationbiodiversite.fr/en/about-the-foundation/le-cesab/"
 ---
 
-<!-- Insert section 'Title slide' -->
+## What is the DESCRIPTION file? {.size-sm}
 
-```{r}
-#| child: "sections/title-slide.qmd"
+It is a structured text file that **centralizes** project **metadata** and 
+**dependencies**, providing a clear overview of what a project is about and 
+what it needs to run.
+
+[]{.vspace-xs}
+
+::: {.grid .text-center}
+
+::: {.g-col-6}
+[{{< fa file-lines size=xl >}}]{style="color: #0D657D;"}
+
+[**Metadata**]{style="color: #0D657D;"}<br>
+[Title, description, authors, license, URL, ...]{.size-sm}
+:::
+
+::: {.g-col-6}
+[{{< fa cubes size=xl >}}]{style="color: #805A35;"}
+
+[**Dependencies**]{style="color: #805A35;"}<br>
+[External packages used in the project]{.size-sm}
+:::
+
+:::
+
+
+[]{.vspace-xs}
+
+{{< fa circle-arrow-right >}}&nbsp; Originally designed for R packages, it can also be used in a **research compendium**.
+
+
+
+## Adding a DESCRIPTION file {.size-sm}
+
+
+- It must be placed at the **root of the project**
+
+- Its filename has **no file extension**
+
+- Its filename must be written in **uppercase**
+
+. . .
+
+[]{.vspace-xs}
+
+::: {.width-75}
+::: {.callout-tip}
+## The `{usethis}` package
+
+To create a **DESCRIPTION** file in your project, try the `use_description()` function of 
+the `{usethis}` package.
+
+[]{.vspace-2xs}
+
+::: {.width-33}
+```{.r}
+usethis::use_description()
+```
+:::
+
+For more information [{{< fa up-right-from-square size=sm >}}](https://usethis.r-lib.org/reference/use_description.html)
+
+
+:::
+:::
+
+
+## Anatomy of the DESCRIPTION file {.size-sm}
+
+[]{.vspace-lg}
+
+::: {.grid}
+
+::: {.g-col-6}
+```{.yaml}
+Package: projectname
+Type: Package
+Title: The Title of the Project
+Version: 1.0.0
+Authors@R: c(
+    person(
+      given  = "Jane", 
+      family = "Doe", 
+      role   = c("cre", "aut", "cph"),
+      email  = "jane.doe@mail.me"))
+Description: A paragraph providing a full 
+    description of the project.
+License: GPL (>= 2)
+URL: https://github.com/jdoe/projectname/
+Depends: 
+    ggplot2
+Imports:
+    dplyr,
+    readr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
+```
+:::
+:::
+
+
+## Project metadata {.size-sm}
+
+[]{.vspace-lg}
+
+::: {.grid}
+
+::: {.g-col-6}
+
+```{.yaml code-line-numbers="1-14,20-22"}
+Package: projectname
+Type: Package
+Title: The Title of the Project
+Version: 1.0.0
+Authors@R: c(
+    person(
+      given  = "Jane", 
+      family = "Doe", 
+      role   = c("cre", "aut", "cph"),
+      email  = "jane.doe@mail.me"))
+Description: A paragraph providing a full 
+    description of the project.
+License: GPL (>= 2)
+URL: https://github.com/jdoe/projectname/
+Depends: 
+    ggplot2
+Imports:
+    dplyr,
+    readr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
+```
+:::
+
+::: {.g-col-6 .text-center}
+
+[]{.vspace-2xl}
+
+[{{< fa file-lines size=xl >}}]{style="color: #0D657D;"}
+
+[**Metadata**]{style="color: #0D657D;"}<br>
+[Title, description, authors, license,<br>encoding, URL, configuration, ...]{.size-sm}
+:::
+:::
+
+
+## Project dependencies {.size-sm}
+
+[]{.vspace-lg}
+
+::: {.grid}
+
+::: {.g-col-6}
+
+```{.yaml code-line-numbers="15-19"}
+Package: projectname
+Type: Package
+Title: The Title of the Project
+Version: 1.0.0
+Authors@R: c(
+    person(
+      given  = "Jane", 
+      family = "Doe", 
+      role   = c("cre", "aut", "cph"),
+      email  = "jane.doe@mail.me"))
+Description: A paragraph providing a full 
+    description of the project.
+License: GPL (>= 2)
+URL: https://github.com/jdoe/projectname/
+Depends: 
+    ggplot2
+Imports:
+    dplyr,
+    readr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
+```
+:::
+
+::: {.g-col-6 .text-center}
+
+[]{.vspace-2xl}
+
+[{{< fa cubes size=xl >}}]{style="color: #805A35;"}
+
+[**Dependencies**]{style="color: #805A35;"}<br>
+[External packages used<br>in the project]{.size-sm}
+:::
+:::
+
+
+## Why avoid library()? {.size-sm}
+
+Two issues with attaching packages w/ `library()`
+
+[]{.vspace-xs}
+
+::: {.grid}
+
+::: {.g-col-6 .fragment}
+1. **Function origin is unclear**
+
+```{.r}
+library(foo)
+
+
+bar()
 ```
 
+::: {.size-sm}
+- Where does `bar()` come from?
+- Its package of origin is not explicit in the code
+:::
+:::
 
-<!-- Insert section 'Quarto basics' -->
+::: {.g-col-6 .fragment}
+2. **Function name conflicts**
 
-```{r}
-#| child: "sections/main-slides.qmd"
+```{.r}
+library(foo)
+library(baz)
+
+bar()
 ```
 
+::: {.size-sm}
+- What if both packages provide a `bar()` function?
+- The last attached package masks the other one
+:::
+:::
+
+:::
+
+[]{.vspace-sm}
+
+. . .
+
+```{.r}
+library("tidyverse")   
+## ── Conflicts ────────────────────────────────────────────────────────── tidyverse_conflicts() ## ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package to force all conflicts to become errors
+```
+
+## Prefer the syntax foo::bar() {.size-sm}
+
+Make function calls explicit w/ the [**Double Colon operator**](https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-dblcolon.html)
+
+[]{.vspace-2xs}
+
+::: {.width-33}
+```{.r}
+foo::bar()
+baz::bar()
+```
+:::
+
+. . .
+
+[]{.vspace-2xs}
+
+**Beneficits**
+
+- **Clarity**: immediately identifies the package providing the function
+- **No ambiguity**: avoids conflicts between functions with the same name
+- **Maintainability**: makes code easier to read, understand and reuse
+
+. . .
+
+[]{.vspace-2xs}
+
+::: {.width-75 .center}
+::: {.callout-tip}
+## Recommendation
+
+{{< fa circle-info size=sm >}}&nbsp; Always use the syntax **`foo::bar()`** in your code[^funcall]
+and do not use `library(foo)` anymore.
+:::
+:::
+
+[^funcall]: Except if you call many functions of a package many times (e.g. `ggplot2`)
+
+
+## Declaring dependencies in DESCRIPTION {.size-sm}
+
+::: {.grid .g-gap-4}
+
+::: {.g-col-6}
+
+```{.yaml code-line-numbers="15-19"}
+Package: projectname
+Type: Package
+Title: The Title of the Project
+Version: 1.0.0
+Authors@R: c(
+    person(
+      given  = "Jane", 
+      family = "Doe", 
+      role   = c("cre", "aut", "cph"),
+      email  = "jane.doe@mail.me"))
+Description: A paragraph providing a full 
+    description of the project.
+License: GPL (>= 2)
+URL: https://github.com/jdoe/projectname/
+Depends: 
+    ggplot2
+Imports:
+    dplyr,
+    readr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
+```
+:::
+
+
+::: {.g-col-6 .size-sm .fragment}
+[**Depends**]{.bg-tip}
+
+- Packages **attached** when your project is loaded
+- Their exported functions become available
+- **Use it occasionally**!
+
+. . .
+
+[**Imports**]{.bg-tip style="margin-top: 1em;"}
+
+- Packages are loaded but **not attached**
+- Their functions can be called explicitly using `foo::bar()`
+- **Prefer this field**!
+
+[]{.vspace-sm}
+
+::: {.callout-tip .fragment}
+## Recommendation
+
+{{< fa circle-info size=sm >}}&nbsp; Always list your packages in the **Imports** 
+field and use the syntax **`foo::bar()`** in your code.
+:::
+:::
+
+:::
+
+
+## From DESCRIPTION to a reproducible workflow {.size-sm}
+
+**Where are we?**
+
+- We have implemented functions in the **R/** directory
+- We have described our project in the **DESCRIPTION** file
+- We have centralized dependencies in **Imports** (and occasionally in **Depends**)
+
+. . .
+
+[]{.vspace-xs}
+
+{{< fa circle-info size=sm >}}&nbsp; We can now use **R package development tools** to manage our project
+
+. . .
+
+[]{.vspace-sm}
+
+::: {.grid .text-center}
+
+::: {.g-col-6}
+[Install dependencies]{.bg-tip}
+
+::: {.width-100 .size-lg}
+```{.r}
+pak::local_install_deps()
+```
+:::
+:::
+
+::: {.g-col-6}
+[Load project]{.bg-tip}
+
+::: {.width-100 .size-lg}
+
+```{.r}
+devtools::load_all()
+```
+:::
+:::
+
+:::
+
+
+
+
+## Install dependencies {.size-sm}
+
+Use the **`local_install_deps()`** function of the **`{pak}`** package to 
+install all packages listed in the **DESCRIPTION** file
+
+. . .
+
+This:
+
+1. will read package names from the **DESCRIPTION** file (**Depends** & **Imports**)
+2. will install all missing required packages
+3. will update installed packages (unless `upgrade = FALSE`)
+4. won't reinstall already installed packages
+
+. . .
+
+::: {.grid .g-gap-4}
+
+::: {.g-col-6}
+
+**Usage**
+
+
+```{.r}
+pak::local_install_deps()
+```
+
+[]{.vspace-sm}
+
+::: {.size-sm}
+{{< fa circle-info size=sm >}}&nbsp; For more information 
+[{{< fa up-right-from-square size=sm >}}](https://pak.r-lib.org/reference/local_install_deps.html)
+:::
+
+:::
+
+::: {.g-col-6}
+
+::: {.callout-tip .fragment style="margin-top: 4em;"}
+## Recommendation
+
+Don't use the `install.packages()` function anymore!
+:::
+
+:::
+:::
+
+
+## Load project {.size-sm}
+
+Use the **`load_all()`** function of the **`{devtools}`** package to load the project
+
+
+. . .
+
+This:
+
+1. will load packages listed in the **Imports** field of the **DESCRIPTION** file
+2. will load & attach packages listed in the **Depends** field of the **DESCRIPTION** file
+3. will "source" all functions in the **R/** directory
+
+::: {.grid .g-gap-4}
+
+::: {.g-col-6}
+
+. . .
+
+**Usage**
+
+
+```{.r}
+devtools::load_all()
+```
+
+[]{.vspace-sm}
+
+::: {.size-sm}
+{{< fa circle-info size=sm >}}&nbsp; For more information 
+[{{< fa up-right-from-square size=sm >}}](https://devtools.r-lib.org/reference/load_all.html)
+:::
+
+:::
+
+::: {.g-col-6}
+
+::: {.callout-tip .fragment style="margin-top: 4em;"}
+## Recommendation
+
+- Don't use the `library()` function anymore!<br>
+- Don't use the `source()` function anymore!
+:::
+
+:::
+:::
+
+## Wrap-up {.size-sm}
+
+::: {.grid .size-sm}
+
+::: {.g-col-6}
+
+::: {.text-center}
+[DO]{.bg-tip}
+:::
+
+[]{.vspace-xs}
+
+- Add a **DESCRIPTION** file to your project
+- List your packages in this file (**Imports**)
+- Use the syntax **`foo::bar()`**
+- Use **`pak::install_local_deps()`** to install required packages
+- Use **`devtools::load_all()`** to load the project
+:::
+
+
+::: {.g-col-6}
+::: {.text-center}
+[DON'T]{.bg-tip}
+:::
+
+[]{.vspace-xs}
+
+- Don't use **`install.packages()`**
+- Don't use **`library()`** (use **`::`** or **Depends**)
+- Don't use **`source()`** to source functions
+
+:::
+
+:::
+
+## Resources {.size-sm}
+
+- Wickham H & Bryan J (2023) **Chap. 9: DESCRIPTION**. In _R Packages_, (2nd ed.). [Online book](https://r-pkgs.org/description.html)
+- R Core Team (2026) **The DESCRIPTION file**. In _Writing R Extensions_. [Online manual](https://cran.rstudio.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file)
+
+
+[]{.vspace-2xs}
+
+::: {.size-sm}
+- The **`usethis::use_description()`** function [{{< fa up-right-from-square size=sm >}}](https://usethis.r-lib.org/reference/use_description.html)
+- The **`pak::local_install_deps()`** function [{{< fa up-right-from-square size=sm >}}](https://pak.r-lib.org/reference/local_install_deps.html)
+- The **`devtools::load_all()`** function [{{< fa up-right-from-square size=sm >}}](https://devtools.r-lib.org/reference/load_all.html)
+:::
